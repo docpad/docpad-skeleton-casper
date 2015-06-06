@@ -1,0 +1,10 @@
+<header class="main-header post-head" style="background-image: url(<%= @masthead() %>)">
+  <nav class="main-nav overlay clearfix">
+    <% if @site.logo: %>
+    <a class="blog-logo" href="<%= @site.url %>"><img src="<%= @site.logo %>" alt="<%= @site.title %>" /></a>
+    <% end %>
+    <% if @site.navigation: %>
+      <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    <% end %>
+  </nav>
+</header>

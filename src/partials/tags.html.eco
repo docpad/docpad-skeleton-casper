@@ -1,0 +1,3 @@
+<% for tag, indx in @tags: %>
+  <a href="/tags/<%= @slug(tag) %>.html"><%= tag %></a><% unless indx+1 is @tags.length: %>, <% end %>
+<% end %>

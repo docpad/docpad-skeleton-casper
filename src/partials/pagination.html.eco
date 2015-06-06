@@ -1,0 +1,16 @@
+
+
+
+<nav class="pagination" role="navigation">
+  <% if @hasPrevPage(): %>
+    <a class="newer-posts" href="<%= @getPrevPage() %>">← Newer Posts</a>
+  <% end %>
+  <% if @hasPrevPage() or @hasNextPage(): %>
+  <span class="page-number">Page <%= @document.page.number + 1 %> of <%= @document.page.count %></span>
+  <% end %>
+
+
+  <% if @hasNextPage(): %>
+    <a class="older-posts" href="<%= @getNextPage() %>">Older Posts →</a>
+  <% end %>
+</nav>

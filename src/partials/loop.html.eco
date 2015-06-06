@@ -1,0 +1,28 @@
+<% unless @document.page.number is 0: %>
+
+<%- @partial('pagination') %>
+
+<% end %>
+
+<% for page in @getPageCollection("posts").toJSON(): %>
+<article class="post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="<%= page.url %>"><%= page.title %></a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p><%- @excerpt(page) %> <a class="read-more" href="<%= page.url %>">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+      <% if @author.img: %>
+        <img class="author-thumb" src="<%= @author.img %>" alt="<%= @author.name %>" nopin="nopin" />
+      <% end %>
+      <%- @partial('author') %>
+      <% if page.tags: %>
+        <%- @partial('tags', {tags: page.tags}) %>
+      <% end %>
+      <time class="post-date" datetime="<%= @time(page.postDate, 'YYYY-MMMM-DD') %>"><%= @time(page.postDate, 'DD MMMM YYYY') %></time>
+    </footer>
+</article>
+<% end %>
+
+<%- @partial('pagination') %>

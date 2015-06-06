@@ -1,0 +1,97 @@
+---
+layout: 'default'
+---
+<%- @partial('masthead') %>
+
+<main class="content" role="main">
+  <article class="post">
+
+    <header class="post-header">
+      <h1 class="post-title"><%= @document.title %></h1>
+      <section class="post-meta">
+        <% if @document.isPaged: %>
+          <b>Page <%= @document.page.number + 1 %></b> 
+        <% end %>
+        <time class="post-date" datetime="<%= @time(@document.postDate, 'YYYY-MMMM-DD') %>"><%= @time(@document.postDate, 'DD MMMM YYYY') %></time> <% if @document.tags: %><%- @partial('tags', {tags: @document.tags}) %><% end %>
+      </section>
+    </header>
+    <% if @document.isPaged: %>
+      <% unless @document.page.number is 0: %>
+
+        <%- @partial('article-pager') %>
+
+      <% end %>
+    <% end %>
+    <section class="post-content">
+      <%- @content %>
+    </section>
+    <% if @document.isPaged: %>
+      <%- @partial('article-pager') %>
+    <% end %>
+    <footer class="post-footer">
+
+      <% if @author.img: %>
+      <figure class="author-image">
+        <a class="img" href="<%= @author.href %>" style="background-image: url(<%= @author.img %>)"><span class="hidden"><%= @author.name %>'s Picture</span></a>
+      </figure>
+      <% end %>
+
+      <section class="author">
+        <h4><a href="<%= @author.href %>"><%= @author.name %></a></h4>
+
+        <% if @author.bio: %>
+        <p><%- @author.bio %></p>
+        <% end %>
+        <div class="author-meta">
+          <% if @author.location: %>
+          <span class="author-location icon-location"><%= @author.location %></span>
+          <% end %>
+          <% if @author.website: %>
+          <span class="author-link icon-link"><a href="<%= @author.website %>"><%= @author.website %></a></span>
+          <% end %>
+        </div>
+      </section>
+
+      <section class="share">
+        <h4>Share this post</h4>
+        <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=<%= @encode(@document.title) %>&amp;url="
+          onclick="window.open(this.href + window.location.href, 'twitter-share', 'width=550,height=235');return false;">
+          <span class="hidden">Twitter</span>
+        </a>
+        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u="
+          onclick="window.open(this.href + window.location.href, 'facebook-share','width=580,height=296');return false;">
+          <span class="hidden">Facebook</span>
+        </a>
+        <a class="icon-google-plus" href="https://plus.google.com/share?url="
+          onclick="window.open(this.href + window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <span class="hidden">Google+</span>
+        </a>
+      </section>
+
+    </footer>
+
+  </article>
+</main>
+
+<aside class="read-next">
+  <% for post, postIndex in @getCollection('posts').toJSON(): %>
+    <% if @document.id is post.id: %>
+      <% if postIndex < @getCollection('posts').length - 1: %>
+        <a class="read-next-story" style="background-image: url(<%= @masthead( @getCollection('posts').toJSON()[postIndex+1]) %>)" href="<%= @getCollection('posts').toJSON()[postIndex+1].url %>">
+          <section class="post">
+            <h2><%= @getCollection('posts').toJSON()[postIndex+1].title %></h2>
+            <p><%= @excerpt(@getCollection('posts').toJSON()[postIndex+1], 19) %>&hellip;</p>
+          </section>
+        </a>
+      <% end %>
+      <% if postIndex >= 1: %>
+        <a class="read-next-story prev" style="background-image: url(<%= @masthead( @getCollection('posts').toJSON()[postIndex-1]) %>)" href="<%= @getCollection('posts').toJSON()[postIndex-1].url %>">
+          <section class="post">
+            <h2><%= @getCollection('posts').toJSON()[postIndex-1].title %></h2>
+            <p><%= @excerpt(@getCollection('posts').toJSON()[postIndex-1], 19) %>&hellip;</p>
+          </section>
+        </a>
+      <% end %>
+    <% end %>
+  <%end%>
+</aside>

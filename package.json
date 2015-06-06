@@ -1,0 +1,18 @@
+{
+  "name": "casper-skeleton.docpad",
+  "version": "0.1.0",
+  "description": "The Casper theme for Docpad",
+  "dependencies": {
+    "docpad": "~6.78.1",
+    "docpad-plugin-eco": "~2.1.0",
+    "docpad-plugin-marked": "~2.3.0",
+    "docpad-plugin-paged": "~2.4.0",
+    "docpad-plugin-partials": "~2.9.2",
+    "docpad-plugin-rss": "~2.2.0",
+    "docpad-plugin-tags": "~2.0.7"
+  },
+  "main": "node_modules/.bin/docpad-server",
+  "scripts": {
+    "start": "node_modules/.bin/docpad-server"
+  }
+}

@@ -1,0 +1,33 @@
+---
+layout: 'default'
+section: 'home'
+isPaged: true
+pagedCollection: 'posts'
+split: true
+prefix: 'page'
+pageSize: 5
+---
+
+<header class="main-header" style="background-image: url(<%= @masthead() %>)">
+  <nav class="main-nav overlay clearfix">
+    <% if @site.logo: %>
+    <a class="blog-logo" href="<%= @site.url %>"><img src="<%= @site.logo %>" alt="<%= @site.title %>" /></a>
+    <% end %>
+    <% if @site.navigation: %>
+      <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    <% end %>
+  </nav>
+  <div class="vertical">
+    <div class="main-header-content inner">
+      <h1 class="page-title"><%= @site.title %></h1>
+      <h2 class="page-description"><%= @site.tagline %></h2>
+    </div>
+  </div>
+  <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+<main id="content" class="content" role="main">
+
+  <%- @partial('loop') %>
+
+</main>
