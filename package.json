@@ -9,7 +9,8 @@
     "docpad-plugin-paged": "~2.4.0",
     "docpad-plugin-partials": "~2.9.2",
     "docpad-plugin-rss": "~2.2.0",
-    "docpad-plugin-tags": "~2.0.7"
+    "docpad-plugin-tags": "~2.0.7",
+    "moment": "^2.10.3"
   },
   "main": "node_modules/.bin/docpad-server",
   "scripts": {
