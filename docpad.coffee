@@ -32,7 +32,7 @@ docpadConfig = {
       ]
     author:
       name: 'John U. Doe'
-      image: ''
+      img: ''
       url: '/'
       location: 'Nowhere, IL',
       bio: 'I do stuff and things'
